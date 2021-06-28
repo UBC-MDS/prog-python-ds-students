@@ -1,5 +1,6 @@
 from hashlib import sha1
 import pandas as pd
+import altair as alt
 import pytest
 import sys
 from decimal import Decimal
@@ -208,7 +209,7 @@ def test_2e(answer):
 
 def test_2f(answer):
     assert not answer is None, "Your answer does not exist. Have you passed in the correct variable?"
-    assert answer.mark == "bar", "Your plot is not a bar plot. Make sure you are using the 'mark_bar()' function"
+    assert (answer.mark == 'bar' or answer.mark.type == 'bar'), "Make sure you are using the 'mark_bar()' function"
     assert str(answer.encoding.x.shorthand) == 'COMMON_NAME' or str(answer.encoding.x.field) == 'COMMON_NAME', "Make sure you are plotting the \
                                                                                                     `COMMON_NAME` variable on the x-axis."
     if str(answer.encoding.y.shorthand) == 'Undefined':
@@ -277,7 +278,7 @@ def test_3g(answer):
     assert sha1(str(list(answer)[0] + 10).encode('utf8')).hexdigest(
     ) == "ebb4fe9f608ae0e66e714b2299a672ef7cc1e0f3", "The average age is incorrect. Are you computing it correctly?"
     assert sha1(str(list(answer)[1] + 10).encode('utf8')).hexdigest(
-    ) == "a833d20673e4271077b2abff1eb17cae2ee7d132", "The average fare is incorrect. Are you computing it correctly?"
+    ) == "81087e980caa119b87c091c0f1048c577e277c15", "The average fare is incorrect. Are you computing it correctly?"
     return ("success")
 
 
@@ -345,7 +346,7 @@ def test_3k(answer):
 
 def test_4a(answer):
     assert not answer is None, "Your answer does not exist. Have you passed in the correct variable?"
-    assert answer.mark == "bar", "Your plot is not a bar plot. Make sure you are using the 'mark_bar()' function"
+    assert (answer.mark == 'bar' or answer.mark.type == 'bar'), "Make sure you are using the 'mark_bar()' function"
     assert answer.encoding.x.shorthand == 'pclass' or answer.encoding.x.field == 'pclass', "Make sure you are plotting the 'pclass' variable on the x-axis."
     if str(answer.encoding.y.shorthand) == 'Undefined':
         assert answer.encoding.y.field == 'survived', "Make sure you are plotting the 'survived' variable on the y-axis."
@@ -364,7 +365,7 @@ def test_4b(answer):
 
 def test_4c(answer):
     assert not answer is None, "Your answer does not exist. Have you passed in the correct variable?"
-    assert answer.mark == "bar", "Your plot is not a bar plot. Make sure you are using the 'mark_bar()' function"
+    assert (answer.mark == 'bar' or answer.mark.type == 'bar'), "Make sure you are using the 'mark_bar()' function"
     assert answer.encoding.x.shorthand == 'sex' or answer.encoding.x.field == 'sex', "Make sure you are plotting the 'sex' variable on the x-axis."
     if str(answer.encoding.y.shorthand) == 'Undefined':
         assert answer.encoding.y.field == 'survived', "Make sure you are plotting the 'survived' variable on the y-axis."
@@ -383,7 +384,7 @@ def test_4d(answer):
 
 def test_4e(answer):
     assert not answer is None, "Your answer does not exist. Have you passed in the correct variable?"
-    assert answer.mark == "bar", "Your plot is not a bar plot. Make sure you are using the 'mark_bar()' function"
+    assert (answer.mark == 'bar' or answer.mark.type == 'bar'), "Make sure you are using the 'mark_bar()' function"
     assert answer.encoding.x.shorthand == 'age_group' or answer.encoding.x.field == 'age_group', "Make sure you are plotting the 'age_group' variable on the x-axis."
     if str(answer.encoding.y.shorthand) == 'Undefined':
         assert answer.encoding.y.field == 'survived', "Make sure you are plotting the 'survived' variable on the y-axis."
@@ -412,17 +413,14 @@ def test_4h(answer):
     return ("success")
 
 def test_4i(answer):
-    assert not answer is None, "Your answer does not exist. Have you passed in the correct variable?"
     assert list(answer.index[0]) == [3, 'female', 'senior'], "Incorrect values. Are you grouping and sorting correctly?"
-    assert list(answer.index[23]) == [2, 'female', 'senior'], "Incorrect values. Are you grouping and sorting correctly?"
+    assert list(answer.index[23]) == [3, 'male', 'senior'], "Incorrect values. Are you grouping and sorting correctly?"
     assert list(answer.index[12]) == [1, 'male', 'adult'], "Incorrect values. Are you grouping and sorting correctly?"
-    return ("success")
+    return("success")
 
 
 def test_4j(answer):
     assert not answer is None, "Your answer does not exist. Have you passed in the correct variable?"
     assert sha1(str(answer).encode('utf8')).hexdigest(
     ) == "98ae019454f12e734c6fefc48b193b4e5c47604f", "Answer is incorrect"
-    print("Success")
-
-
+    return("success")
