@@ -1,0 +1,12 @@
+**.ipython/*
+**.jupyter/*
+**.local/*
+.npm/
+dockerfiles/.jupyter/
+dockerfiles/.npm/
+.ipynb_checkpoints
+*/.ipynb_checkpoints/*
+.bash_history
+**/.DS_Store
+*/.DS_Store
+release/.DS_Store
